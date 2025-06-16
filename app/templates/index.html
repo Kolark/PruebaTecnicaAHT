@@ -2,27 +2,36 @@
 {% block title %}Inventory{% endblock %}
 {% block content %}
 <h1>Current Inventory</h1>
-<table>
+<a href="/add">Add a new item</a>
+<table class="table">
+  <thead>
   <tr>
-    <th>id</th>
-    <th>name</th>
-    <th>price</th>
-    <th>mac_address</th>
-    <th>serial_number</th>
-    <th>manufacturer</th>
-    <th>description</th>
-  </tr>
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+      <th scope="col">price</th>
+      <th scope="col">mac_address</th>
+      <th scope="col">serial_number</th>
+      <th scope="col">manufacturer</th>
+      <th scope="col">description</th>
+      <th scope="col"><b>EDIT</b></th>
+      <th scope="col"><b>DELETE</b></th>
+    </tr>
+  </thead>
+  <tbody>
   {% for item in inventory -%}
   <tr>
-    <td>{{ item.id }}</td>
+    <th scope="row">{{ item.id }}</th>
     <td>{{ item.name }}</td>
     <td>{{ item.price }}</td>
     <td>{{ item.mac_address }}</td>
     <td>{{ item.serial_number }}</td>
     <td>{{ item.manufacturer }}</td>
     <td>{{ item.description }}</td>
+    <td><a href="/edit/{{ item.id }}">edit</a></td>
+    <td><a href="/delete/{{ item.id }}">delete</a></td>
   </tr>
   {%- endfor %}
+  </tbody>
 </table>
 {% endblock %}
 

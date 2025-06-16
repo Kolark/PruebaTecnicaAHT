@@ -2,26 +2,31 @@
 {% block title %}Add Inventory{% endblock %}
 {% block content %}
 <h1>Add a new inventory item</h1>
+<a href="/">All items</a>
 <form method="post">
-<table>
+<table class="table">
+  <thead>
   <tr>
-    <th>name</th>
-    <th>price</th>
-    <th>mac_address</th>
-    <th>serial_number</th>
-    <th>manufacturer</th>
-    <th>description</th>
-  </tr>
-  <tr>
-    <td><input type="text" name="name" id="name" required></td>
-    <td><input type="number" name="price" id="price" required></td>
-    <td><input type="text" name="mac_address" id="mac_address" required></td>
-    <td><input type="text" name="serial_number" id="serial_number" required></td>
-    <td><input type="text" name="manufacturer" id="manufacturer" required></td>
-    <td><input type="text" name="description" id="description" required></td>
-  </tr>
+      <th scope="col">name</th>
+      <th scope="col">price</th>
+      <th scope="col">mac_address</th>
+      <th scope="col">serial_number</th>
+      <th scope="col">manufacturer</th>
+      <th scope="col">description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row"><input type="text" name="name" id="name" required maxlength="30"></td>
+      <td><input type="number" name="price" id="price" required></td>
+      <td><input type="text" name="mac_address"   id="mac_address" required maxlength="17"></td>
+      <td><input type="text" name="serial_number" id="serial_number" required maxlength="20"></td>
+      <td><input type="text" name="manufacturer"  id="manufacturer" required maxlength="15"></td>
+      <td><input type="text" name="description"   id="description" required maxlength="255"></td>
+    </tr>
+  </tbody>
 </table>
-<button type="submit">Add new inventory item</button>
+<button class="btn btn-primary" type="submit">Add new inventory item</button>
 </form>
 
 {% endblock %}

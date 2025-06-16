@@ -2,38 +2,43 @@
 {% block title %}Edit Inventory item{% endblock %}
 {% block content %}
 <h1>Edit an inventory item</h1>
+<a href="/">All items</a>
 {% if current_item %}
 <form method="post">
-<table>
+<table class="table">
+  <thead>
   <tr>
-    <th><b>id</b></th>
-    <th>name</th>
-    <th>price</th>
-    <th>mac_address</th>
-    <th>serial_number</th>
-    <th>manufacturer</th>
-    <th>description</th>
-  </tr>
-  <tr>
-    <td>{{ current_item.id }}</td>
-    <td>{{ current_item.name }}</td>
-    <td>{{ current_item.price }}</td>
-    <td>{{ current_item.mac_address }}</td>
-    <td>{{ current_item.serial_number }}</td>
-    <td>{{ current_item.manufacturer }}</td>
-    <td>{{ current_item.description }}</td>
-</tr>
-  <tr>
-    <td><b>CHANGE ITEM:</b></td>
-    <td><input type="text" name="name" id="name"></td>
-    <td><input type="number" name="price" id="price"></td>
-    <td><input type="text" name="mac_address" id="mac_address"></td>
-    <td><input type="text" name="serial_number" id="serial_number"></td>
-    <td><input type="text" name="manufacturer" id="manufacturer"></td>
-    <td><input type="text" name="description" id="description"></td>
-  </tr>
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+      <th scope="col">price</th>
+      <th scope="col">mac_address</th>
+      <th scope="col">serial_number</th>
+      <th scope="col">manufacturer</th>
+      <th scope="col">description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{ current_item.id }}</th>
+      <td>{{ current_item.name }}</td>
+      <td>{{ current_item.price }}</td>
+      <td>{{ current_item.mac_address }}</td>
+      <td>{{ current_item.serial_number }}</td>
+      <td>{{ current_item.manufacturer }}</td>
+      <td>{{ current_item.description }}</td>
+    </tr>
+    <tr>
+      <th scope="row">{{ current_item.id }}</th>
+      <td><input type="text"   value="{{ current_item.name }}" name="name"          id="name" maxlength="30"></td>
+      <td><input type="number" value="{{ current_item.price }}" name="price"         id="price" ></td>
+      <td><input type="text"   value="{{ current_item.mac_address }}" name="mac_address"   id="mac_address" maxlength="17"></td>
+      <td><input type="text"   value="{{ current_item.serial_number }}" name="serial_number" id="serial_number" maxlength="20"></td>
+      <td><input type="text"   value="{{ current_item.manufacturer }}" name="manufacturer"  id="manufacturer" maxlength="15"></td>
+      <td><input type="text"   value="{{ current_item.description }}" name="description"   id="description" maxlength="255"></td>
+    </tr>
+</tbody>
 </table>
-<button type="submit">Edit inventory item</button>
+<button class="btn btn-primary" type="submit">Edit inventory item</button>
 </form>
 {% else %}
 <h1>No item found for id {{ query_id }}</h1>
