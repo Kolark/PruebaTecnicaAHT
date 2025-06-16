@@ -8,7 +8,6 @@ services:
     environment:
       USER: root
       PASSWORD: '123'
-      DATABASE_URL: mysql+pymysql://root:123@db:3306/inventory_db
     depends_on:
       - db
 

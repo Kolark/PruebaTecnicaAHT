@@ -8,15 +8,12 @@ from sqlalchemy.exc import OperationalError
 import time
 import os
 
-# url = URL.create("mysql+pymysql",username=os.getenv("USER"),password=os.getenv("PASSWORD"),host="db",port=3306, database="inventory_db")
-url = os.getenv("DATABASE_URL")
-# engine = create_engine(url, echo=True)
+url = URL.create("mysql+pymysql",username=os.getenv("USER"),password=os.getenv("PASSWORD"),host="db",port=3306, database="inventory_db")
 
 for attempt in range(10):
     try:
         engine = create_engine(url, echo=True)
         conn = engine.connect()
-        print("Connected to MySQL database!")
         conn.close()
         break
     except OperationalError as e:
