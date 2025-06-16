@@ -12,7 +12,7 @@ RUN pip install -r requirements.txt
 #Expose the port
 EXPOSE 5000
 
-CMD ["flask", "run"]
+CMD ["python", "app.py"]
 
 
 

@@ -4,11 +4,26 @@ from sqlalchemy import create_engine, Integer, VARCHAR
 from sqlalchemy.orm import DeclarativeBase, Session, mapped_column
 from sqlalchemy import select, URL
 from flask_bootstrap import Bootstrap
+from sqlalchemy.exc import OperationalError
+import time
 import os
 
 # url = URL.create("mysql+pymysql",username=os.getenv("USER"),password=os.getenv("PASSWORD"),host="db",port=3306, database="inventory_db")
 url = os.getenv("DATABASE_URL")
-engine = create_engine(url, echo=True)
+# engine = create_engine(url, echo=True)
+
+for attempt in range(10):
+    try:
+        engine = create_engine(url, echo=True)
+        conn = engine.connect()
+        print("Connected to MySQL database!")
+        conn.close()
+        break
+    except OperationalError as e:
+        time.sleep(3)
+else:
+    raise RuntimeError("Could not connect to MySQL after 10 tries.")
+
 
 class Base(DeclarativeBase):
     pass
@@ -24,7 +39,6 @@ class Inventory(Base):
     description = mapped_column(VARCHAR(255), nullable=False)
     def __repr__(self) -> str:
         return f"Inventory(id={self.id!r}, name={self.name!r}, price={self.price!r}, mac_address={self.mac_address!r}, serial_number={self.serial_number!r}, manufacturer={self.manufacturer!r}, description={self.description!r})"
-
 
 Base.metadata.create_all(engine)
 
@@ -93,7 +107,5 @@ def delete_inventory_post(id):
     return redirect(url_for('show_inventory'))
 
 
-
-
-
-
+if __name__ == '__main__':
+   app.run(host='0.0.0.0',port=5000)
