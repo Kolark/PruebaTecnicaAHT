@@ -1,0 +1,38 @@
+{% extends 'bootstrap/base.html' %}
+{% block title %}Remove inventory item{% endblock %}
+{% block content %}
+<h1>Remove inventory item</h1>
+{% if current_item %}
+<form method="post">
+<table>
+  <tr>
+    <th><b>id</b></th>
+    <th>name</th>
+    <th>price</th>
+    <th>mac_address</th>
+    <th>serial_number</th>
+    <th>manufacturer</th>
+    <th>description</th>
+  </tr>
+  <tr>
+    <td>{{ current_item.id }}</td>
+    <td>{{ current_item.name }}</td>
+    <td>{{ current_item.price }}</td>
+    <td>{{ current_item.mac_address }}</td>
+    <td>{{ current_item.serial_number }}</td>
+    <td>{{ current_item.manufacturer }}</td>
+    <td>{{ current_item.description }}</td>
+</tr>
+</table>
+<button type="submit">Delete inventory item</button>
+</form>
+{% else %}
+<h1>No item found for id {{ query_id }}</h1>
+{% endif %}
+
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}

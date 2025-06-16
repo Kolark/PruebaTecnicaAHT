@@ -1,0 +1,32 @@
+{% extends 'bootstrap/base.html' %}
+{% block title %}Add Inventory{% endblock %}
+{% block content %}
+<h1>Add a new inventory item</h1>
+<form method="post">
+<table>
+  <tr>
+    <th>name</th>
+    <th>price</th>
+    <th>mac_address</th>
+    <th>serial_number</th>
+    <th>manufacturer</th>
+    <th>description</th>
+  </tr>
+  <tr>
+    <td><input type="text" name="name" id="name" required></td>
+    <td><input type="number" name="price" id="price" required></td>
+    <td><input type="text" name="mac_address" id="mac_address" required></td>
+    <td><input type="text" name="serial_number" id="serial_number" required></td>
+    <td><input type="text" name="manufacturer" id="manufacturer" required></td>
+    <td><input type="text" name="description" id="description" required></td>
+  </tr>
+</table>
+<button type="submit">Add new inventory item</button>
+</form>
+
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}

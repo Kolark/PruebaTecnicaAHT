@@ -1,0 +1,16 @@
+Create routes
+Create dockerized mysql database and script to initialize it.
+run python code inside jinja2 and see if its possible to implement some form of query params
+Use jinja2 and allow crud operations
+
+once all crud operations work. Create dockerfile and docker compose
+
+show all rows
+add row
+
+
+-----------------------
+docker run --name inventory_container -e MYSQL_ROOT_PASSWORD=123 -p 3307:3306 -d mysql:latest
+
+----------------------
+https://www.datacamp.com/tutorial/set-up-and-configure-mysql-in-docker

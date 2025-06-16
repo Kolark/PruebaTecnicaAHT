@@ -1,0 +1,32 @@
+{% extends 'bootstrap/base.html' %}
+{% block title %}Inventory{% endblock %}
+{% block content %}
+<h1>Current Inventory</h1>
+<table>
+  <tr>
+    <th>id</th>
+    <th>name</th>
+    <th>price</th>
+    <th>mac_address</th>
+    <th>serial_number</th>
+    <th>manufacturer</th>
+    <th>description</th>
+  </tr>
+  {% for item in inventory -%}
+  <tr>
+    <td>{{ item.id }}</td>
+    <td>{{ item.name }}</td>
+    <td>{{ item.price }}</td>
+    <td>{{ item.mac_address }}</td>
+    <td>{{ item.serial_number }}</td>
+    <td>{{ item.manufacturer }}</td>
+    <td>{{ item.description }}</td>
+  </tr>
+  {%- endfor %}
+</table>
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
